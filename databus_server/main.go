@@ -24,18 +24,21 @@ func (s* server) Send(ctx context.Context, in *pb.SendRequest) (*pb.SendResponse
 	switch os.Args[2] {
 		case "add":
 			res = a + b
+			fmt.Printf("%v + %v = %v", a, b, res)
 		case "sub":
 			res = a - b
+			fmt.Printf("%v - %v = %v", a, b, res)
 		case "mul":
 			res = a * b
+			fmt.Printf("%v * %v = %v", a, b, res)
 		case "div":
 			res = a / b
+			fmt.Printf("%v / %v = %v", a, b, res)
 		default:
 			fmt.Printf("wrong operation: %s", os.Args[2])
 			return nil, errors.New("Wrong operation")
 	}
 
-	fmt.Printf("%v + %v = %v", a, b, res)
 	return &pb.SendResponse{Result: res}, nil
 }
 
