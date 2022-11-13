@@ -17,7 +17,7 @@ type server struct {
 	pb.UnimplementedDatabusServiceServer
 }
 
-func (s* server) send(ctx context.Context, in *pb.SendRequest) (*pb.SendResponse, error) {
+func (s* server) Send(ctx context.Context, in *pb.SendRequest) (*pb.SendResponse, error) {
 	a, b := in.GetPrm1(), in.GetPrm2()
 	var res float32
 
@@ -31,9 +31,11 @@ func (s* server) send(ctx context.Context, in *pb.SendRequest) (*pb.SendResponse
 		case "div":
 			res = a / b
 		default:
+			fmt.Printf("wrong operation: %s", os.Args[2])
 			return nil, errors.New("Wrong operation")
 	}
 
+	fmt.Printf("%v + %v = %v", a, b, res)
 	return &pb.SendResponse{Result: res}, nil
 }
 
