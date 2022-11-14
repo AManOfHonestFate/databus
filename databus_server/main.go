@@ -57,7 +57,7 @@ func (s* server) Send(ctx context.Context, in *pb.SendRequest) (*pb.SendResponse
 func main() {
 	// requires 2 arguments: port, operation
 	if len(os.Args) != 3 {
-		log.Fatalf("requires 2 arguments, given %v", len(os.Args))
+		log.Fatalf("requires 2 arguments, given %v", len(os.Args) - 1)
 	}
 	
 	// Listening on port given as the first argument
